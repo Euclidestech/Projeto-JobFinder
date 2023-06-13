@@ -1,12 +1,22 @@
- @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
 
 body{
+  background-color: #dedae2;
   margin: 0;
   font-family: 'Noto Sans',sans-serif;
+  height: 0;
+  box-sizing: border-box;
 }
 body *{
   box-sizing: border-box;
+}
+header{
+  align-items: start;
+  height: 10vh;
+  width: 90vw;
+  display: grid;
+  grid-template-rows: 100vw;
 }
 .main-login{
   width: 100vw;
@@ -18,9 +28,9 @@ body *{
 }
 .left-login{
   width: 50vw;
-  height: 100vh;
+  height: auto;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
 }
@@ -120,9 +130,81 @@ p{
   cursor: pointer;
   box-shadow: 0px 10px 40px -12px #00ff8052;
 }
+
+
+
+/*body {
+  margin: 0;
+  height: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+}*/
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90vw;
+  
+}
+
+.column {
+  flex-basis: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.column,.anexo > label{
+  color: rgb(7, 0, 0);
+  
+}
+
+.principal label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.principal [type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea,
+input[type="date"],
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #3b3939;
+  box-sizing: border-box;
+}
+
+.principal [type="submit"] {
+  background-color: #4CAF50;
+  color: rgb(255, 255, 255);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.principal [type="submit"]:hover {
+  background-color: #45a049;
+}
+.principal textarea{
+  width: 50vw;
+}
+.principal #anexo_pdf{
+  width: 50vw;
+}
+.principal #cadastro{
+  justify-content:center;
+}
+
+
+
 @media only screen and (max-width: 950px){
   .card-login{
-    width: 85%
+    width: 85%;
   }
 }
 @media only screen and (max-width: 600px){
