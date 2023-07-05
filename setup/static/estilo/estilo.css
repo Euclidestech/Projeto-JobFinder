@@ -195,7 +195,11 @@ input[type="file"]{
 fieldset{
   margin: 0%;
   border: none;
-  
+}
+.principal > h2{
+  margin-top: 100px;
+  text-align: center;
+  color: #c74e08;
 }
 .navbar {
   background-color: #2b134b;
@@ -204,16 +208,26 @@ fieldset{
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+  width: 100vw;
+  padding: 0 30px;
+  position:  fixed;
+  top: 0;
+  left: 0;
+   
 }
 
 .navbar-logo {
   margin-left: 20px;
+  
 }
 
 .navbar-logo img {
   height: 40px;
+  
 }
-
+.navbar-logo a:hover{
+  background-color: #2b134b;
+}
 .navbar-menu {
   display: flex;
   justify-content: center;
@@ -228,10 +242,11 @@ fieldset{
   padding: 14px 16px;
   text-decoration: none;
   color: white;
+  border-radius: 10px;
 }
 
 .navbar a:hover {
-  background-color: #ddd;
+  background-color: #623899;
 }
 
 .search-container {
@@ -270,16 +285,39 @@ fieldset{
 }
 footer{
   background: #0f1110;
-  height: auto;
-  width: auto;
+  height:  2.5rem  auto;
+  width: 100%;
   border-radius: 1px;
   border: none;
+  bottom: 0;
+  position: absolute;
 }
 .pp{
   display: grid;
   grid-template-rows: auto auto auto;
   
 }
+.feed{
+  background: #fcfcfc;
+}
+#page-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: #00ff88;
+  
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem;
+  height: auto;
+  width: 100%;
+     /* altura do rodapé */
+}
+
+
+
+
+
 @media only screen and (max-width: 950px){
   .card-login{
     width: 85%;

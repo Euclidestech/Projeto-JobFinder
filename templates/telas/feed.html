@@ -5,10 +5,302 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'estilo/estilo.css' %}">
+
+  <style>
+    /* Estilos CSS para o feed de vagas de emprego */
+    :root {
+      --primary-color: #9ad2b7; /* Verde Claro */
+    }
+    
+    body {
+      background-color: #f3dcf1;
+    }
+    
+    .feed-container {
+      max-width: 50vw;
+      height: 50px;
+      margin: 0 auto;
+      padding: 20px;  
+      margin-bottom: 20;
+      position: relative;
+      width: 50vw;
+      
+    }
+    .job-post {
+      
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #fff;
+    }
+    
+    .job-post .title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .job-post .company {
+      font-style: italic;
+      margin-bottom: 5px;
+    }
+    
+    .job-post .description {
+      margin-bottom: 10px;
+      max-height: 10px;
+    }
+    
+    .job-post .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .job-post .actions button {
+      padding: 5px 10px;
+      margin-right: 10px;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .job-post .actions button:hover {
+      background-color: #41e699; /* Verde mais escuro */
+    }
+    
+    .form-container {
+      max-width: 50vw;
+      border-style:double;
+      border-color: #41e699;
+      padding: 5px;
+      margin-bottom: 10px;
+      border-radius: 20px;
+      height: 111px;
+      position: fixed;
+      display: flex;
+      top: 14vh;
+      width: 50vw;
+      background-color: rgba(22, 1, 31, 0.897);
+      display: flex;
+    }
+    
+    .form-container h2 {
+      margin-bottom: 1px;
+      font-family: sans-serif;
+      text-align: center;
+      color: brown;
+    }
+    
+    .form-container input[type="text"],
+    .form-container textarea {
+      width: 30vw;
+      height: 10vh;
+      padding: 5px;
+      margin-bottom: 5px;
+      border: 1px solid #e9e8ab;
+      border-radius: 10px;
+      resize: vertical;
+      display: flexbox;
+      margin-left: 10vw;
+    }
+    
+    .form-container button {
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      width: 100px;
+      align-items:center;
+      display: flex;
+      margin-top: 10vh;
+
+    }
+    
+    .form-container button:hover {
+      background-color: #88bca4; /* Verde mais escuro */
+    }
+    .perfil{
+      position: fixed; 
+      top: 17vh;
+      background-color:
+      #ececec; 
+       margin-left: 2vw;
+       border-radius: 30px;
+       padding: 10px;
+       height: auto;
+       display:flex ;
+    }
+    .perfil > section p{
+      color: black;
+      display: flex;
+
+    }
+    #icone{
+      margin-left: 10px;
+      margin-bottom: 20px;
+      width: 30px;
+      height: 30px;
+    }
+    
+  </style>
+
   <title>Feed</title>
 </head>
 <body>
+  <nav>
+    <div class="navbar">
+      <div class="navbar-logo">
+        <a class="link" href="{% url 'index'%}">
+        <img src="{% static 'img/logo.png'%}" alt="Logo da Empresa"></a>
+      </div>
+       <div class="navbar-menu">
+        <a href="{% url 'batepapo'%}">&#128172; Chat</a>
+        <a href="#">&#9742; Contatos</a>
+       </div>
+      <div class="search-container">
+        <input type="text" placeholder="Pesquisar">
+        <button type="submit">Buscar</button>
+      </div>
+     </div>
+  </nav>
+  <div class="feed-container">
+
+   
+
+
+
+
+    <div class="form-container">
+      <div>
+        <fieldset class="perfil">
+        <section >
+            <img src="{% static 'img/perfil.png'%}" alt="Perfil" >
+        </section> 
+        </fieldset>
+       </div>
+      <!-- <h2>Postar Vaga de Emprego</h2> -->
+      <!-- <input type="text" id="job-title" placeholder="Título da Vaga"> -->
+      <!-- <input type="text" id="company-name" placeholder="Nome da Empresa"> -->
+      <textarea id="job-description" placeholder="Fazer Publicação"></textarea>
+
+
+      <div><img id="icone" src="{% static 'img/imgup.png'%}" alt=""></div>
+    
+
+      <!-- <input type="file" id="job-img"> -->
+      <p><button onclick="postarVaga()">Publicar</button></p>
+    </div> 
+    
+   </div>
+   
+   <div style="max-width: 50vw; height: auto;margin: 0 auto;
+   padding: 20px; margin-bottom: 20px; margin-top: 40vh; border-radius: 20px;">
+   
+    
+     
+        <div id="job-feed" style="width: 50vw;"></div>
+   </div>
+
+   
+            
+    </div>
+   
+
+   
+       
   
-      
+  
+   <script>
+    var vagas = [];
+
+    function postarVaga() {
+      // var titulo = document.getElementById('job-title').value;
+      // var empresa = document.getElementById('company-name').value;
+      var descricao = document.getElementById('job-description').value;
+
+      var vaga = {
+        // titulo: titulo,
+        // empresa: empresa,
+        descricao: descricao,
+        curtidas: 0,
+        comentarios: []
+      };
+
+      vagas.push(vaga);
+      exibirFeed
+	      // Limpar campos de entrada após a postagem
+      // document.getElementById('job-title').value = '';
+      // document.getElementById('company-name').value = '';
+      document.getElementById('job-description').value = '';
+    
+
+      exibirFeed();
+    }
+
+    function adicionarCurtida(index) {
+      vagas[index].curtidas += 1;
+      exibirFeed();
+    }
+
+    function adicionarComentario(index) {
+      var comentario = prompt('Preencha seus dados');
+      if (comentario) {
+        vagas[index].comentarios.push(comentario);
+        exibirFeed();
+      }
+    }
+
+    function exibirFeed() {
+      var feedElement = document.getElementById('job-feed');
+
+      // Limpar o conteúdo do feed
+      feedElement.innerHTML = '';
+
+      vagas.forEach(function(vaga, index) {
+        var vagaElement = document.createElement('div');
+        vagaElement.className = 'job-post';
+
+        // var titleElement = document.createElement('div');
+        // titleElement.className = 'title';
+        // titleElement.textContent = vaga.titulo;
+
+        // var companyElement = document.createElement('div');
+        // companyElement.className = 'company';
+        // companyElement.textContent = vaga.empresa;
+
+        var descriptionElement = document.createElement('div');
+        descriptionElement.className = 'description';
+        descriptionElement.textContent = vaga.descricao;
+
+        var actionsElement = document.createElement('div');
+        actionsElement.className = 'actions';
+
+        var likeButton = document.createElement('button');
+        likeButton.textContent = `Curtir (${vaga.curtidas})`;
+        likeButton.onclick = function() {
+          adicionarCurtida(index);
+        };
+
+        var commentButton = document.createElement('button');
+        commentButton.textContent = `Candidatar (${vaga.comentarios.length})`;
+        commentButton.onclick = function() {
+          adicionarComentario(index);
+        };
+
+        actionsElement.appendChild(likeButton);
+        actionsElement.appendChild(commentButton);
+
+        // vagaElement.appendChild(titleElement);
+        // vagaElement.appendChild(companyElement);
+        vagaElement.appendChild(descriptionElement);
+        vagaElement.appendChild(actionsElement);
+
+        feedElement.appendChild(vagaElement);
+      });
+    }
+  </script>
 </body>
 </html>

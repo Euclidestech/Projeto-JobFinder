@@ -36,9 +36,12 @@
           <label for="senha">Senha</label>
           <input type="password" name="senha" placeholder="Senha">
         </div>
-          <button class="btn-login">Login</button>
+          
+          <button class="btn-login"> <a style="text-decoration: none;" href="{% url 'feed'%}">Login</a></button>
+        
+
           <div>
-            <a class="link" href="{% url 'cadastro'%}">Cadastre-se</a>
+            <a style="text-decoration: none;" class="link" href="{% url 'escolha'%}">Cadastre-se</a>
           <!---  <P class="ou">Ou Acesse com</P>
           <a href="#"><img src="{% static 'img/google.png '%}" class="img-google" alt=""></a>
           <a href="#"><img src="{% static 'img/face.png' %}" class="img-google" alt=""></a>-->

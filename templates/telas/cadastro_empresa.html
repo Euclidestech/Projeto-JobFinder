@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'estilo/estilo.css' %}">
 
-  <title>Cadastre-se</title>
+  <title>Cadastre sua Empresa</title>
 
   </head>
   <body>
@@ -32,7 +32,7 @@
       </div>
     <form action="#" method="POST" enctype="multipart/form-data">
       <fieldset class="principal">
-        <h2>Cadastro de Usuário</h2>
+        <h2>Cadastro de Empresas</h2>
         <div class="container">
           <div class="column">
               <label for="nome">Nome:</label>
@@ -54,24 +54,22 @@
               <label for="bairro">Bairro:</label>
               <input type="text" id="bairro" name="bairro" required>
 
-              <label for="sexo">Sexo:</label>
-              <select id="sexo" name="sexo" required>
-                  <option value="masculino">Masculino</option>
-                  <option value="feminino">Feminino</option>
-                  <option value="outro">Outro</option>
-              </select>
+              <label for="numero">Numero:</label>
+              <input type="text" id="numero" name="numero" required>
 
-              <label for="data_nascimento">Data de Nascimento:</label>
-              <input type="date" id="data_nascimento" name="data_nascimento" required>
+        
+
+              <label for="cnpj">CNPJ:</label>
+              <input type="text" id="cnpj" name="cnpj" required>
           
             </div>
 
             <div class="column">
-              <label for="experiencias">Experiências Profissionais:</label>
+              <label for="experiencias">Area de atuação</label>
              <textarea id="experiencias" name="experiencias" rows="4" cols="50"></textarea>
       
-              <label for="anexo_pdf">Anexar Curriculo em PDF:</label>
-             <input type="file" id="anexo_pdf" name="anexo_pdf" accept="application/pdf" required>
+              <label for="anexo_pdf">Contatos:</label>
+             <input type="text" id="anexo_pdf" name="anexo_pdf" required>
               
              
               </div>

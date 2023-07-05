@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+ <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'estilo/estilo.css' %}">
+
+  <title>escolha uma opção</title>
+
+  </head>
+  <body style="background-color: rgb(247, 204, 240);">
+        <nav>
+          <div class="navbar">
+            <div class="navbar-logo">
+              <a class="link" href="{% url 'index'%}">
+              <img src="{% static 'img/logo.png'%}" alt="Logo da Empresa"></a>
+            </div>
+            <div class="navbar-menu">
+              <a href="{% url 'index'%}">&#8962; Home</a>
+              <a href="#">&#9742; Contatos</a>
+              <a href="#">Sobre</a>
+            </div>
+            <div class="search-container">
+              <input type="text" placeholder="Pesquisar">
+              <button type="submit">Buscar</button>
+            </div>
+        </nav> 
+          
+        <div style="background-color: #eaf0ea;
+        display: fex;
+        justify-content: center;
+        position: absolute;
+        margin-top: 20vh;
+        margin-left: 40vw;
+        border-radius: 15px;
+        ">
+
+          <fieldset>
+           <P> <button style="width: 200px; padding: 10px; background-color: #38e9209d; font-size: 18px;
+           border-radius: 10px;">
+            <a style="text-decoration: none;color: rgb(0, 0, 0);" 
+            href="{% url 'cadastro'%}"> <strong> Cadastrar Pessoa</strong> </a>
+            </button></P>
+            <button style="width: 200px; padding: 10px; background-color: #38e9209d; font-size: 18px;
+            border-radius: 10px;">
+              <a style="text-decoration: none; color: rgb(0, 0, 0);"
+              href="{% url 'cadastro_empresa'%}"><strong> Cadastrar Empresa </strong></a>
+            </button>
+          </fieldset>
+
+        </div>
+
+      <footer>
+    <div>
+      <P></P>
+      <P></P>
+      <P>&copy; 2023</P>
+      
+    </div>
+      </footer>
+   
+</body>
+</html>
