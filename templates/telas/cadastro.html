@@ -30,20 +30,20 @@
             </div>
         </nav>
       </div>
-    <form action="{%url 'usuario_cadastrado'%}" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'cadastro' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <fieldset class="principal">
         <h2>Cadastro de Usuário</h2>
         <div class="container">
           <div class="column">
               <label for="nome">Nome:</label>
-              <input type="text" id="nome" name="nome" required>
+              <input type="text" id="nome" name="nome" >
 
               <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required>
+              <input type="email" id="email" name="email" >
 
               <label for="senha">Senha:</label>
-              <input type="password" id="senha" name="senha" required>
+              <input type="password" id="senha" name="senha" >
 
               <label for="rua">Rua:</label>
               <input type="text" id="rua" name="rua" required>
@@ -70,7 +70,7 @@
 
             <div class="column">
               <label for="experiencias">Experiências Profissionais:</label>
-             <input style="height: 100px;" type="text" id="experiencias" name="experiencias" rows="4" cols="50"></input>
+             <textarea style="height: 100px;" type="text" id="experiencias" name="experiencias" rows="4" cols="50"></textarea>
       
               <!-- <label for="anexo_pdf">Anexar Curriculo em PDF:</label>
              <input type="file" id="anexo_pdf" name="anexo_pdf" accept="application/pdf" required> -->

@@ -76,7 +76,7 @@
       padding: 5px;
       margin-bottom: 10px;
       border-radius: 20px;
-      height: 111px;
+      height: 150px;
       position: fixed;
       display: flex;
       top: 14vh;
@@ -115,7 +115,8 @@
       width: 100px;
       align-items:center;
       display: flex;
-      margin-top: 10vh;
+      margin-top: 16vh;
+      margin-left: -150px;
 
     }
     
@@ -125,41 +126,91 @@
     .perfil{
       position: fixed; 
       top: 17vh;
-      background-color:
-      #ececec; 
-       margin-left: 2vw;
-       border-radius: 30px;
-       padding: 10px;
+      background-color:#ffffff; 
+       margin-left: 3vw;
+       border-radius: 20px;
+       padding: 5px;
        height: auto;
        display:flex ;
+       width: auto;
+      text-shadow: 2px 2px 0px #34c92f;
     }
-    .perfil > section p{
+    .perfil section p{
       color: black;
       display: flex;
 
     }
+
     #icone{
       margin-left: 10px;
       margin-bottom: 20px;
       width: 30px;
       height: 30px;
     }
+    .bt-job {
+      background-color: #5dc774;
+      border-radius: 10px;
+      width: 100px;
+      height: 30px;
+      border-style: none;
+      text-align: center;
+      font-family: serif;
+      font-size: 15px;
+      text-shadow: 1px #035703;
+      cursor: pointer;
+      letter-spacing: 1px;
+      margin-left: 30px;
+      
+      
+    }
+    .bt-job :hover{
+      background-color: #34c92f;
+      transition-duration: 0.55s;
+      
+    }
+    .item-job {
+      text-shadow: 1px 1px 0px #000000;
+      font-family: serif;
+      display: flexbox;
+      list-style: none; 
+      font-size: 20px;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      margin-left: 30px;
+      margin-right: 50px;
+      color: #a70f86;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      
+    }
+   .title-vaga{
+    color: #021402;
+    list-style: none;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px #021402;
+   }
     
+   
   </style>
 
   <title>Feed</title>
 </head>
 <body>
+  
   <nav>
     <div class="navbar">
       <div class="navbar-logo">
-        <a class="link" href="{% url 'index'%}">
+        <a class="link" href="{% url 'feed'%}">
         <img src="{% static 'img/logo.png'%}" alt="Logo da Empresa"></a>
       </div>
        <div class="navbar-menu">
-        <a href="{% url 'batepapo'%}">&#128172; Chat</a>
-        <a href="#">&#9742; Contatos</a>
+        <a href="{% url 'batepapo'%}">&#128233; Chat</a>
+        <a href="#">&#128222; Contatos</a>
+        <a href="{% url 'feed' %}">&#128203; Feed</a>
+        <a href="{% url 'index' %}">&#10060; Sair</a>
        </div>
+       
+
       <div class="search-container">
         <input type="text" placeholder="Pesquisar">
         <button type="submit">Buscar</button>
@@ -172,135 +223,99 @@
 
 
 
+    <form action="{% url 'cadastrar_vaga'%}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
 
-    <div class="form-container">
+      
+
+     <div class="form-container">
+
       <div>
         <fieldset class="perfil">
         <section >
             <img src="{% static 'img/perfil.png'%}" alt="Perfil" >
         </section> 
         </fieldset>
+        <p style="margin-left: 40px;margin-top: 14vh;color: #d8e2db ;
+        text-shadow:1px 2px 2px #040a04; font-family: serif; width: 1vw;">
+          {{user.username}}</p>
        </div>
-      <!-- <h2>Postar Vaga de Emprego</h2> -->
-      <!-- <input type="text" id="job-title" placeholder="Título da Vaga"> -->
-      <!-- <input type="text" id="company-name" placeholder="Nome da Empresa"> -->
-      <textarea id="job-description" placeholder="Fazer Publicação"></textarea>
-
-
-      <div><img id="icone" src="{% static 'img/imgup.png'%}" alt=""></div>
+      <p><textarea   
+      name="job-description" placeholder="Fazer Publicação">
+      </textarea></p>
+      <p><input style="margin-left: -52vw; margin-top: 65px; width: 100px; height: 30px;"
+        placeholder="Valor " name="valor" type="text"></p>
     
+        
 
-      <!-- <input type="file" id="job-img"> -->
-      <p><button onclick="postarVaga()">Publicar</button></p>
-    </div> 
+      
+      
+      <div >
+        <img id="icone" src="{% static 'img/imgup.png'%}" alt="" >
+      
+      </div>
+      <p>
+        <button type="submit" >Publicar</button></p>
+      </div> 
     
-   </div>
+     </div>
+    </form>
    
    <div style="max-width: 50vw; height: auto;margin: 0 auto;
    padding: 20px; margin-bottom: 20px; margin-top: 40vh; border-radius: 20px;">
    
     
-     
-        <div id="job-feed" style="width: 50vw;"></div>
-   </div>
-
-   
+      
+        
+          {% for item in vagas %}
+           
+          <div class="job-post" style="width: 50vw; border-radius: 12px; 
+          box-shadow: 2px 1px 2px rgb(4, 7, 5);">
+           <a href="{% url 'feed' %}" style="text-decoration: none;color:brown;">
+            &#128113;{{user.username}}</a> 
             
-    </div>
-   
+            <ul>
+              <!-- <div style="width:45vw;height: 100px;; background-color: #41e699;">-->
+                <!-- <li class="title-vaga"> {{item.id_vaga}}</li> -->
+                <li class="title-vaga">Descrição da vaga:</li> 
+            <li class="item-job">{{item.descricao}}</li>
+                <li class="title-vaga">Valor da oferta:</li>
+            <li class="item-job"> {{item.valor}}</li>
+          </ul>
+          
+          <button class="bt-job" id="likeButton" onclick="like()"> Curtir
+            
+          </button>
+          <span id="likeCount" style="color: #091dcf;"> 0 Curtidas</span>
 
-   
-       
-  
-  
-   <script>
-    var vagas = [];
-
-    function postarVaga() {
-      // var titulo = document.getElementById('job-title').value;
-      // var empresa = document.getElementById('company-name').value;
-      var descricao = document.getElementById('job-description').value;
-
-      var vaga = {
-        // titulo: titulo,
-        // empresa: empresa,
-        descricao: descricao,
-        curtidas: 0,
-        comentarios: []
-      };
-
-      vagas.push(vaga);
-      exibirFeed
-	      // Limpar campos de entrada após a postagem
-      // document.getElementById('job-title').value = '';
-      // document.getElementById('company-name').value = '';
-      document.getElementById('job-description').value = '';
-    
-
-      exibirFeed();
-    }
-
-    function adicionarCurtida(index) {
-      vagas[index].curtidas += 1;
-      exibirFeed();
-    }
-
-    function adicionarComentario(index) {
-      var comentario = prompt('Preencha seus dados');
-      if (comentario) {
-        vagas[index].comentarios.push(comentario);
-        exibirFeed();
-      }
-    }
-
-    function exibirFeed() {
-      var feedElement = document.getElementById('job-feed');
-
-      // Limpar o conteúdo do feed
-      feedElement.innerHTML = '';
-
-      vagas.forEach(function(vaga, index) {
-        var vagaElement = document.createElement('div');
-        vagaElement.className = 'job-post';
-
-        // var titleElement = document.createElement('div');
-        // titleElement.className = 'title';
-        // titleElement.textContent = vaga.titulo;
-
-        // var companyElement = document.createElement('div');
-        // companyElement.className = 'company';
-        // companyElement.textContent = vaga.empresa;
-
-        var descriptionElement = document.createElement('div');
-        descriptionElement.className = 'description';
-        descriptionElement.textContent = vaga.descricao;
-
-        var actionsElement = document.createElement('div');
-        actionsElement.className = 'actions';
-
-        var likeButton = document.createElement('button');
-        likeButton.textContent = `Curtir (${vaga.curtidas})`;
-        likeButton.onclick = function() {
-          adicionarCurtida(index);
-        };
-
-        var commentButton = document.createElement('button');
-        commentButton.textContent = `Candidatar (${vaga.comentarios.length})`;
-        commentButton.onclick = function() {
-          adicionarComentario(index);
-        };
-
-        actionsElement.appendChild(likeButton);
-        actionsElement.appendChild(commentButton);
-
-        // vagaElement.appendChild(titleElement);
-        // vagaElement.appendChild(companyElement);
-        vagaElement.appendChild(descriptionElement);
-        vagaElement.appendChild(actionsElement);
-
-        feedElement.appendChild(vagaElement);
-      });
-    }
-  </script>
+          <a href="{% url 'batepapo'%}"><button class="bt-job" style="margin-left: 50px;"> 
+            Candidatar</button></a>
+            
+            <a href="/delete/{{item.id_vaga}}">
+              
+            <button type="submit" style="background-color: rgb(163, 57, 57); margin-left: 70px;"
+             class="bt-job"> Deletar 
+            </button>
+          
+          </a>
+      
+         </div>
+          {% endfor %}
+   </div>
 </body>
+<script>
+  
+  let likeCount = 0;
+
+function like() {
+  likeCount++;
+  updateLikeCount();
+}
+
+function updateLikeCount() {
+  const likeCountElement = document.getElementById('likeCount');
+  likeCountElement.textContent = `${likeCount} curtida${likeCount !== 1 ? 's' : ''}`;
+}
+
+</script>
 </html>

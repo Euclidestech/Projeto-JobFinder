@@ -1,4 +1,197 @@
+{% load static %}
 <html lang="pt-br">
+  <html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'estilo/estilo.css' %}">
+
+  <style>
+    /* Estilos CSS para o feed de vagas de emprego */
+    :root {
+      --primary-color: #9ad2b7; /* Verde Claro */
+    }
+    
+    body {
+      background-color: #f3dcf1;
+    }
+    
+    .feed-container {
+      max-width: 50vw;
+      height: 50px;
+      margin: 0 auto;
+      padding: 20px;  
+      margin-bottom: 20;
+      position: relative;
+      width: 50vw;
+      
+    }
+    .job-post {
+      
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #fff;
+    }
+    
+    .job-post .title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .job-post .company {
+      font-style: italic;
+      margin-bottom: 5px;
+    }
+    
+    .job-post .description {
+      margin-bottom: 10px;
+      max-height: 10px;
+    }
+    
+    .job-post .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .job-post .actions button {
+      padding: 5px 10px;
+      margin-right: 10px;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .job-post .actions button:hover {
+      background-color: #41e699; /* Verde mais escuro */
+    }
+    
+    .form-container {
+      max-width: 50vw;
+      border-style:double;
+      border-color: #41e699;
+      padding: 5px;
+      margin-bottom: 10px;
+      border-radius: 20px;
+      height: 150px;
+      position: fixed;
+      display: flex;
+      top: 14vh;
+      width: 50vw;
+      background-color: rgba(22, 1, 31, 0.897);
+      display: flex;
+    }
+    
+    .form-container h2 {
+      margin-bottom: 1px;
+      font-family: sans-serif;
+      text-align: center;
+      color: brown;
+    }
+    
+    .form-container input[type="text"],
+    .form-container textarea {
+      width: 30vw;
+      height: 10vh;
+      padding: 5px;
+      margin-bottom: 5px;
+      border: 1px solid #e9e8ab;
+      border-radius: 10px;
+      resize: vertical;
+      display: flexbox;
+      margin-left: 10vw;
+    }
+    
+    .form-container button {
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      width: 100px;
+      align-items:center;
+      display: flex;
+      margin-top: 16vh;
+      margin-left: -150px;
+
+    }
+    
+    .form-container button:hover {
+      background-color: #88bca4; /* Verde mais escuro */
+    }
+    .perfil{
+      position: fixed; 
+      top: 17vh;
+      background-color:#ffffff; 
+       margin-left: 3vw;
+       border-radius: 20px;
+       padding: 5px;
+       height: auto;
+       display:flex ;
+       width: auto;
+      text-shadow: 2px 2px 0px #34c92f;
+    }
+    .perfil section p{
+      color: black;
+      display: flex;
+
+    }
+
+    #icone{
+      margin-left: 10px;
+      margin-bottom: 20px;
+      width: 30px;
+      height: 30px;
+    }
+    .bt-job {
+      background-color: #5dc774;
+      border-radius: 10px;
+      width: 100px;
+      height: 30px;
+      border-style: none;
+      text-align: center;
+      font-family: serif;
+      font-size: 15px;
+      text-shadow: 1px #035703;
+      cursor: pointer;
+      letter-spacing: 1px;
+      margin-left: 30px;
+      
+      
+    }
+    .bt-job :hover{
+      background-color: #34c92f;
+      transition-duration: 0.55s;
+      
+    }
+    .item-job {
+      text-shadow: 1px 1px 0px #000000;
+      font-family: serif;
+      display: flexbox;
+      list-style: none; 
+      font-size: 20px;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      margin-left: 30px;
+      margin-right: 50px;
+      color: #2b2a02;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      
+    }
+   .title-vaga{
+    color: #021402;
+    list-style: none;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px #021402;
+   }
+    
+   
+  </style>
 
 <head>
   <meta charset="UTF-8">
@@ -84,13 +277,32 @@ header {
 
 <body>
   <header>
-    <h1>Chat</h1>
   </header>
+  <nav>
+    <div class="navbar">
+      <div class="navbar-logo">
+        <a class="link" href="{% url 'feed'%}">
+        <img src="{% static 'img/logo.png'%}" alt="Logo da Empresa"></a>
+      </div>
+       <div class="navbar-menu">
+        <a href="{% url 'batepapo'%}">&#128233; Chat</a>
+        <a href="#">&#128222; Contatos</a>
+        <a href="{% url 'feed' %}">&#128203; Feed</a>
+       </div>
+       
+
+      <!-- <div class="search-container">
+        <input type="text" placeholder="Pesquisar">
+        <button type="submit">Buscar</button>
+      </div> -->
+     </div>
+  </nav>
   <div class="container">
     <div class="chat-window">
       <div class="chat-area">
         <div class="chat-messages">
           <!-- Chat Messages -->
+            
         </div>
       </div>
       <div class="user-input">
